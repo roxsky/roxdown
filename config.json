@@ -5,7 +5,7 @@
     "loglevel": "warning"
   },
   "inbound": {
-    "port": 443,
+    "port": 8000,
     "protocol": "vmess",
     "settings": {
       "clients": [
@@ -16,18 +16,6 @@
           "security": "aes-128-gcm"
         }
       ]
-    },
-   "streamSettings": {
-      "network": "tcp",
-      "security": "tls", // security 要设置为 tls 才会启用 TLS
-      "tlsSettings": {
-        "certificates": [
-          {
-            "certificateFile": "/etc/v2ray/v2ray.crt", // 证书文件
-            "keyFile": "/etc/v2ray/v2ray.key" // 密钥文件
-          }
-        ]
-      }
     }
   },
   "outbound": {
