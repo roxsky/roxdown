@@ -1,0 +1,136 @@
+{
+  "log" : {
+    "access": "/var/log/v2ray/access.log",
+    "error": "/var/log/v2ray/error.log",
+    "loglevel": "warning"
+  },
+  "inbound": {
+    "port": 443,
+    "protocol": "vmess",
+    "settings": {
+      "clients": [
+        {
+          "id": "9340ca8d-52a8-476e-b3c1-ce7a74526d69",
+          "level": 1,
+          "alterId": 64,
+          "security": "aes-128-gcm"
+        }
+      ]
+    },
+   "streamSettings": {
+      "network": "tcp",
+      "security": "tls", // security 要设置为 tls 才会启用 TLS
+      "tlsSettings": {
+        "certificates": [
+          {
+            "certificateFile": "/etc/v2ray/v2ray.crt", // 证书文件
+            "keyFile": "/etc/v2ray/v2ray.key" // 密钥文件
+          }
+        ]
+      }
+    }
+  },
+  "outbound": {
+    "protocol": "freedom",
+    "settings": {}
+  },
+  
+  "inboundDetour": [
+  	{
+  		"protocol": "shadowsocks",
+  		"port": "8081",
+  		"settings": {
+  			 "method": "aes-256-gcm",
+  	     "password": "wpkj5200",
+  		   "udp": false,
+  		   "level": 1,
+  		   "ota": true,
+  		   "network": "tcp,udp"
+  		   }
+  	},
+    {
+  		"protocol": "shadowsocks",
+  		"port": "8082",
+  		"settings": {
+  			 "method": "aes-256-gcm",
+  	     "password": "wpkj5200",
+  		   "udp": false,
+  		   "level": 1,
+  		   "ota": true,
+  		   "network": "tcp,udp"
+  		   }
+  	},
+    {
+  		"protocol": "shadowsocks",
+  		"port": "8083",
+  		"settings": {
+  			 "method": "aes-256-gcm",
+  	     "password": "wpkj5200",
+  		   "udp": false,
+  		   "level": 1,
+  		   "ota": true,
+  		   "network": "tcp,udp"
+  		   }
+  	},
+    {
+  		"protocol": "shadowsocks",
+  		"port": "8084",
+  		"settings": {
+  			 "method": "aes-256-gcm",
+  	     "password": "wpkj5200",
+  		   "udp": false,
+  		   "level": 1,
+  		   "ota": true,
+  		   "network": "tcp,udp"
+  		   }
+  	},
+    {
+  		"protocol": "shadowsocks",
+  		"port": "8085",
+  		"settings": {
+  			 "method": "aes-256-gcm",
+  	     "password": "wpkj5200",
+  		   "udp": false,
+  		   "level": 1,
+  		   "ota": true,
+  		   "network": "tcp,udp"
+  		   }
+  	}
+  ],
+
+  "outboundDetour": [
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "blocked"
+    }
+  ],
+  "routing": {
+    "strategy": "rules",
+    "settings": {
+      "rules": [
+        {
+          "type": "field",
+          "ip": [
+            "0.0.0.0/8",
+            "10.0.0.0/8",
+            "100.64.0.0/10",
+            "127.0.0.0/8",
+            "169.254.0.0/16",
+            "172.16.0.0/12",
+            "192.0.0.0/24",
+            "192.0.2.0/24",
+            "192.168.0.0/16",
+            "198.18.0.0/15",
+            "198.51.100.0/24",
+            "203.0.113.0/24",
+            "::1/128",
+            "fc00::/7",
+            "fe80::/10"
+          ],
+          "outboundTag": "blocked"
+        }
+      ]
+    }
+  }
+}
